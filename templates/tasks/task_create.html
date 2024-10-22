@@ -1,0 +1,9 @@
+<h1>Tasks for {{ project.name }}</h1>
+
+<h1>Create New Task</h1>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Create</button>
+</form>
+<a href="{% url 'task_create' project.pk %}">Add New Task</a>

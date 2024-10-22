@@ -1,0 +1,9 @@
+<h2>Tasks for Project: {{ project.name }}</h2>
+<a href="{% url 'task_create' project.pk %}">Add New Task</a>
+<ul>
+    {% for task in tasks %}
+        <li><a href="{% url 'task_detail' project.pk task.pk %}">{{ task.title }}</a> - {{ task.status }}</li>
+    {% empty %}
+        <li>No tasks found.</li>
+    {% endfor %}
+</ul>
