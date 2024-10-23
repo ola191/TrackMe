@@ -93,9 +93,9 @@ body {
 .skelet_projects_list {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: start;
     width: 100%;
-    height: 100%;
+    height: auto;
     padding: 1em;
 }
 
@@ -120,12 +120,14 @@ body {
 
 main {
     display: flex;
+    width: 100%;
 }
 
 
 .skelet_projects {
     display: flex;
-    flex-direction: row; flex-wrap: wrap;
+    flex-direction: row;
+    flex-wrap: wrap;
     gap: 2em
 }
 
@@ -149,4 +151,68 @@ main {
 
 .skelet_project p:nth-child(2) {
     color: #d2d2ff;
+}
+
+.welcome_container {
+    padding: 1.25em;
+}
+
+.welcome_container > p {
+    font-weight: bold;
+    color: #86a3ad;
+}
+
+.welcome_container > span {
+    color: #426ab2;
+    font-weight: bolder;
+    font-size: 1.5em;
+    text-transform: capitalize;
+}
+
+.dashboard_template {
+    display: flex;
+    flex-direction: column;
+    padding: 0 .5em;
+    width: 100%;
+}
+
+.divider_section {
+    padding: .25em 1.25em;
+    color: #86a3ad;
+}
+
+.skelet_tasks_list {
+    padding: 1.25em;
+    display: flex; flex-direction: column;
+    width: 100%;
+}
+
+.skelet_tasks {
+    display: flex; flex-direction: row;
+    width: 100% ;
+}
+
+.skelet_tasks > li {
+    background-color: #f2f5ff;
+    padding: .25em;
+    margin: .5em .35em .5em .35em;
+    border-bottom: 1px solid #426ab2;
+    list-style: none;
+    text-transform: none;
+}
+
+.skelet_tasks > li:nth-child(1) {
+    width: 30%;
+}
+
+.skelet_tasks > li:nth-child(2) {
+    width: 20%;
+}
+
+.skelet_tasks > li:nth-child(3) {
+    width: 15%;
+}
+
+.skelet_tasks > li:nth-child(4) {
+    width: 15%;
 }

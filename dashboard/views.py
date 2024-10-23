@@ -6,7 +6,18 @@ from tasks.models import Task
 
 @login_required
 def dashboard_view(request):
-    return render(request, 'users/dashboard.html')
+    recent_owner_projects = Project.objects.filter(Q(owner=request.user)).order_by('-created_at')[:3]
+    recent_team_projects = Project.objects.filter(Q(team=request.user)).exclude(owner=request.user).order_by('-created_at')[:3]
+
+    combined_projects = recent_owner_projects | recent_team_projects
+
+    recent_tasks = Task.objects.filter(project__in=combined_projects).order_by('-created_at')[:8]
+    print(recent_tasks)
+    return render(request, 'users/dashboard.html', {
+        'recent_owner_projects': recent_owner_projects,
+        'recent_team_projects':recent_team_projects,
+        'recent_tasks': recent_tasks,
+    })
 
 @login_required
 def projects_view(request):

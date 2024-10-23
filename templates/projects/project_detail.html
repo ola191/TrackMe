@@ -9,4 +9,11 @@
     {% endfor %}
 </ul>
 
+<h3>Add Team Member</h3>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Add</button>
+</form>
+
 <a href="{% url 'task_create' project.pk %}">Add New Task</a>
