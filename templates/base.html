@@ -9,20 +9,36 @@
 </head>
 <body>
 <nav class="skelet_navbar">
+    <div class="icon_container connect:navbar_expand~skelet_navbar connect:navbar_expand~icon_label">
+        <div class="navbar_container">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
     <div class="icon_container">
         <a href="{% url 'dashboard' %}">
             <img src="{% static 'icons/dashboard.svg' %}">
         </a>
+        <span class="icon_label">
+            dashboard
+        </span>
     </div>
     <div class="icon_container">
         <a href="{% url 'project_list' %}">
             <img src="{% static 'icons/projects.svg' %}">
         </a>
+               <span class="icon_label">
+            projects
+        </span>
     </div>
     <div class="icon_container">
         <a href="{% url 'logout' %}">
             <img src="{% static 'icons/logout.svg' %}">
         </a>
+               <span class="icon_label">
+            logout
+        </span>
     </div>
     <ul>
     </ul>
@@ -31,5 +47,30 @@
 <main>
     {% block content %}{% endblock %}
 </main>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const connectElements = document.querySelectorAll('[class*="connect:"]');
+
+        connectElements.forEach(element => {
+            element.addEventListener('click', function() {
+                const connections = this.className.match(/connect:([^\s]+~[^\s]+)/g);
+
+                if (connections) {
+                    connections.forEach(connection => {
+                        const classes = connection.split('connect:')[1].split('~');
+                        const classA = classes[0].trim();
+                        const classB = classes[1].trim();
+
+                        const targetElements = document.querySelectorAll(`.${classB}`);
+
+                        targetElements.forEach(target => {
+                            target.classList.toggle(classA);
+                        });
+                    });
+                }
+            });
+        });
+    });
+</script>
 </body>
 </html>
