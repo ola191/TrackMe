@@ -8,17 +8,15 @@
     <link rel="stylesheet" href="{% static 'src/main.css' %}">
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
-                <li><a href="{% url 'project_list' %}">Projects</a></li>
-                <li><a href="{% url 'tasks' %}">Tasks</a></li>
+    <nav class="skelet_navbar">
+        <ul>
+            <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+            <li><a href="{% url 'project_list' %}">Projects</a></li>
+            <li><a href="{% url 'tasks' %}">Tasks</a></li>
 {#                <li><a href="{% url 'contacts' %}">Contacts</a></li>#}
-                <li><a href="{% url 'logout' %}">Logout</a></li>
-            </ul>
-        </nav>
-    </header>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+        </ul>
+    </nav>
 
     <main>
         {% block content %}{% endblock %}
