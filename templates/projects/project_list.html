@@ -6,14 +6,20 @@
 
 {% block content %}
     <div class="skelet_projects_list">
-        <a class="skelet_add_project" href="{% url 'project_create' %}">Add New Project</a>
         <ul class="skelet_projects">
             {% for project in projects %}
-                <li class="skelet_project"><a href="{% url 'project_detail' project.pk %}">{{ project.name }}</a> - {{ project.description }}
+                <li class="skelet_project"><a href="{% url 'project_detail' project.pk %}">
+                    <p>{{ project.name }}</p>
+                    <p>{{ project.description }}</p>
+                </a>
                 </li>
             {% empty %}
                 <li>No projects found.</li>
             {% endfor %}
+            <li class="skelet_project"> <a class="" href="{% url 'project_create' %}">Add New Project</a>
+
+            </li>
+
         </ul>
     </div>
 {% endblock %}

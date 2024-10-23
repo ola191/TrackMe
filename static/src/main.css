@@ -28,6 +28,7 @@ body {
 .skelet_navbar.navbar_expand {
     align-items: start;
     width: 12em;
+    padding: 1.5em 1em;
 }
 
 .icon_label {
@@ -40,11 +41,14 @@ body {
 
 .icon_label.navbar_expand {
     display: flex;
-    animation: showText 2s;
+    animation: showText .4s;
 }
 
 @keyframes showText {
     0% {
+        opacity: 0;
+    }
+    45% {
         opacity: 0;
     }
     100% {
@@ -116,4 +120,33 @@ body {
 
 main {
     display: flex;
+}
+
+
+.skelet_projects {
+    display: flex;
+    flex-direction: column;
+    gap: 2em
+}
+
+.skelet_project {
+    background-color: #426ab2;
+    box-shadow: 0px .5px .5px rgba(0, 0, 0, 0.5), 0px 0px 0px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.1);
+    padding: 16px;
+    border-radius: 0.5em;
+    cursor: pointer;
+    max-width: 15em;
+}
+
+.skelet_project > a {
+    color: white;
+    text-decoration: none;
+}
+
+.skelet_project p {
+    padding: .25em;
+}
+
+.skelet_project p:nth-child(2) {
+    color: #d2d2ff;
 }
