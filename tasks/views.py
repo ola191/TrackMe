@@ -14,14 +14,14 @@ def task_list_view(request, project_pk):
 def task_create_view(request, project_pk):
     project = get_object_or_404(Project, pk=project_pk)
     if request.method == 'POST':
-        form = TaskForm(request.POST)
+        form = TaskForm(request.POST, project=project)
         if form.is_valid():
             task = form.save(commit=False)
             task.project = project
             task.save()
             return redirect('task_list', project_pk=project.pk)
     else:
-        form = TaskForm()
+        form = TaskForm(project=project)
     return render(request, 'tasks/task_create.html', {'form': form, 'project': project})
 
 @login_required

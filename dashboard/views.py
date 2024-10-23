@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
+from django.db.models import Q
 from projects.models import Project
 from tasks.models import Task
 
@@ -9,7 +10,7 @@ def dashboard_view(request):
 
 @login_required
 def projects_view(request):
-    projects = Project.objects.filter(owner=request.user)
+    projects = Project.objects.filter(Q(owner=request.user) | Q(team=request.user))
     return render(request, 'projects/projects.html', {'projects': projects})
 
 @login_required

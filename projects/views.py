@@ -1,12 +1,13 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 from .models import Project
 from .forms import ProjectForm
 from tasks.models import Task
 
 @login_required
 def project_list_view(request):
-    projects = Project.objects.filter(owner=request.user)
+    projects = Project.objects.filter(Q(owner=request.user) | Q(team=request.user))
     return render(request, 'projects/project_list.html', {'projects': projects})
 
 @login_required
