@@ -1,3 +1,5 @@
+from asgiref.sync import async_to_sync
+from channels.layers import get_channel_layer
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
@@ -38,12 +40,38 @@ def project_detail_view(request, project_pk):
                 member = form.cleaned_data['member']
                 if member not in project.team.all():
                     project.team.add(member)
+
+                    channel_layer = get_channel_layer()
+                    async_to_sync(channel_layer.group_send)(
+                        f"user_{member.id}",
+                        {
+                            'type': 'send_notification',
+                            'message': {
+                                'title': 'Project Update',
+                                'body': f'You have been added to the project {project.name}.'
+                            }
+                        }
+                    )
+
                     return redirect('project_detail', project_pk=project.pk)
         elif 'remove_member' in request.POST:
             member_id = request.POST.get('member_id')
             member = CustomUser.objects.filter(id=member_id).first()
             if member in project.team.all():
                 project.team.remove(member)
+
+                channel_layer = get_channel_layer()
+                async_to_sync(channel_layer.group_send)(
+                    f"user_{member.id}",
+                    {
+                        'type': 'send_notification',
+                        'message': {
+                            'title': 'Project Update',
+                            'body': f'You have been removed from the project {project.name}.'
+                        }
+                    }
+                )
+
             return redirect('project_detail', project_pk=project.pk)
     else:
         form = AddTeamMemberForm(project=project)

@@ -30,6 +30,8 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+ASGI_APPLICATION = 'TrackMe.asgi.application'
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -41,8 +43,21 @@ INSTALLED_APPS = [
     'users',
     'dashboard.apps.DashboardConfig',
     'projects.apps.ProjectsConfig',
-    'tasks.apps.TasksConfig'
+    'tasks.apps.TasksConfig',
+    'channels',
+    'TrackMe',
 ]
+
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
+        },
+    },
+}
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
