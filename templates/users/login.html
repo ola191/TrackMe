@@ -1,7 +1,26 @@
+{% extends 'base_short.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
 <h3>Login</h3>
 <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Login</button>
+    {% for field in form %}
+        <div class="login-form-container">
+            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+            {{ field }}
+            {% if field.errors %}
+                <div class="error">{{ field.errors }}</div>
+            {% endif %}
+        </div>
+    {% endfor %}
+    <button type="submit" class="btn btn-primary">Login</button>
 </form>
-    <button><a href="{% url 'register' %}">Sign Up</a></button>
+<button class="btn btn-secondary">
+    <a href="{% url 'register' %}" class="btn-link">Sign Up</a>
+</button>
+
+{% endblock %}
+
+
