@@ -1,0 +1,47 @@
+.w-full {
+    width: 100%;
+}
+
+.h-full {
+    height: 100%;
+}
+
+.w-50p {
+    width: 50%;
+}
+
+.w-75p {
+    width: 75%;
+}
+
+.w-25p {
+    width: 25%;
+}
+
+.h-50p {
+    height: 50%;
+}
+
+.h-75p {
+    height: 75%;
+}
+
+.h-25p {
+    height: 25%;
+}
+
+.max-w-300 {
+    max-width: 300px;
+}
+
+.max-w-500 {
+    max-width: 500px;
+}
+
+.min-w-200 {
+    min-width: 200px;
+}
+
+.min-w-400 {
+    min-width: 400px;
+}

@@ -1,0 +1,16 @@
+.form-field {
+}
+
+.form-field > label {
+    color: black;
+    font-size: 18px;
+}
+.form-field input {
+    width: 100%;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+}

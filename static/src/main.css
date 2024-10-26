@@ -1,17 +1,21 @@
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+@import url("base/reset.css");
+@import url("base/variables.css");
+
+@import url("layout/align.css");
+@import url("layout/spacing.css");
+@import url("layout/sizing.css");
+@import url("layout/panels.css");
+@import url("components/forms.css");
+
+/*##### LOGIN #####*/
+
+.template_navbar {
+
 }
 
-html, body {
-    overflow-x: hidden;
-}
 
-body {
-    display: flex;
-    flex-direction: row;
-}
+
+
 
 .skelet_navbar {
     display: flex;
@@ -328,3 +332,5 @@ main {
 .skelet_tasks > li:nth-child(4) {
     width: 15%;
 }
+
+

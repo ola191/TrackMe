@@ -1,0 +1,43 @@
+.panel {
+    background-color: transparent;
+    border-radius: 8px;
+    box-shadow: 0 2px 2px var(--color-primary);
+}
+
+.login-panel {
+    width: 100%;
+    max-width: 400px;
+    height: 350px;
+    --transparency: 2%;
+    background-color: color-mix(in srgb, var(--color-primary) var(--transparency, 100%), transparent);
+}
+
+.centered-panel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.panel-header {
+    font-size: 32px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.panel-button {
+    display: block;
+    width: 100%;
+    background-color: var(--color-primary);
+    color: white;
+    border: none;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.panel-button:hover {
+    background-color: var(--color-primary);
+}

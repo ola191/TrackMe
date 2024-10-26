@@ -1,0 +1,65 @@
+.m0 {margin: 0;}
+.m05 {margin: 8px;}
+.m1 {margin: 16px;}
+.m2 {margin: 32px;}
+.m3 {margin: 48px;}
+.m4 {margin: 64px;}
+.m5 {margin: 80px;}
+.m6 {margin: 96px;}
+.m8 {margin: 128px;}
+.m10 {margin: 160px;}
+
+.xm0 {margin: 0 0;}
+.xm05 {margin: 0 8px;}
+.mx1 {margin: 0 16px;}
+.mx2 {margin: 0 32px;}
+.mx3 {margin: 0 48px;}
+.mx4 {margin: 0 64px;}
+.mx5 {margin: 0 80px;}
+.mx6 {margin: 0 96px;}
+.mx8 {margin: 0 128px;}
+.mx10 {margin: 0 160px;}
+
+.my0 {margin: 0 0;}
+.my05 {margin: 8px 0;}
+.my1 {margin: 16px 0;}
+.my2 {margin: 32px 0;}
+.my3 {margin: 48px 0;}
+.my4 {margin: 64px 0;}
+.my5 {margin: 80px 0;}
+.my6 {margin: 96px 0;}
+.my8 {margin: 128px 0;}
+.my10 {margin: 160px 0;}
+
+.p0 {padding: 0;}
+.p05 {padding: 8px;}
+.p1 {padding: 16px;}
+.p2 {padding: 32px;}
+.p3 {padding: 48px;}
+.p4 {padding: 64px;}
+.p5 {padding: 80px;}
+.p6 {padding: 96px;}
+.p8 {padding: 128px;}
+.p10 {padding: 160px;}
+
+.px0 {padding: 0 0;}
+.px05 {padding: 0 8px;}
+.px1 {padding: 0 16px;}
+.px2 {padding: 0 32px;}
+.px3 {padding: 0 48px;}
+.px4 {padding: 0 64px;}
+.px5 {padding: 0 80px;}
+.px6 {padding: 0 96px;}
+.px8 {padding: 0 128px;}
+.px10 {padding: 0 160px;}
+
+.py0 {padding: 0 0;}
+.py05 {padding: 8px 0;}
+.py1 {padding: 16px 0;}
+.py2 {padding: 32px 0;}
+.py3 {padding: 48px 0;}
+.py4 {padding: 64px 0;}
+.py5 {padding: 80px 0;}
+.py6 {padding: 96px 0;}
+.py8 {padding: 128px 0;}
+.py10 {padding: 160px 0;}
