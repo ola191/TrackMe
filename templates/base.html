@@ -45,6 +45,8 @@
 </nav>
 
 <main>
+    <div class="curtain-start"></div>
+    <div class="curtain-end"></div>
     {% block content %}{% endblock %}
 </main>
 <script>
@@ -71,12 +73,13 @@
             });
         });
 
-        // Handle anchor tag click with class 'redirect'
         const redirectLinks = document.querySelectorAll('.redirect');
 
         redirectLinks.forEach(link => {
             link.addEventListener('click', function(event) {
-                event.preventDefault(); // Prevent the default link behavior
+                event.preventDefault();
+
+                document.querySelector('.curtain-end').classList.add("active-curtain-end");
 
                 const targetUrl = this.getAttribute('href');
                 const navbarExpandElements = document.querySelectorAll('.navbar_expand');

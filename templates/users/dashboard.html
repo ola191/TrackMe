@@ -38,7 +38,9 @@
                     </a>
                     </li>
                 {% empty %}
-                    <li>No projects found.</li>
+                    <li class="skelet_project filter-pale" style="color: white">
+                        <p>No projects found.</p>
+                    </li>
                 {% endfor %}
 
             </ul>
@@ -57,7 +59,9 @@
                     <li>{{ task.due_date }}</li>
                 </ul>
             {% empty %}
-                <li>No tasks found.</li>
+                    <li class="skelet_project filter-pale" style="color: white">
+                        <p>No tasks found.</p>
+                    </li>
             {% endfor %}
         </div>
     </div>
