@@ -91,7 +91,7 @@
 }
 
 .skelet_projects_list {
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: start;
     width: 100%;
@@ -99,6 +99,137 @@
     padding: 1em;
 }
 
+.skelet_projects_list_detailed {
+    display: none;
+    padding: 1em;
+    flex-direction: column;
+}
+
+.skelet_projects_list_detailed_devider {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 2em;
+    background-color: #dfeaff;
+}
+
+.skelet_projects_list_detailed_devider_icon {
+    display: flex;
+    height: 100%;
+    aspect-ratio: 1/1;
+    align-items: center;
+    justify-content: center;
+}
+
+.skelet_projects_list_detailed_devider_label {
+    display: flex;
+    align-items: center;
+    color: #778899FF;
+    position: relative;
+    padding-left: .75em;
+}
+
+.skelet_projects_list_detailed_devider_label::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    transform: scaleY(0.6);
+    width: .25em;
+    background: #9ca8b4;
+}
+
+.skelet_projects_detailed a{
+    text-decoration: none;
+    color: black;
+}
+
+.project-name {
+    width: 15%;
+}
+
+.project-description {
+    width: 20%;
+    font-size: 13px !important;
+}
+
+.project-created_at {
+    width: 15%;
+}
+.project-created_at span {
+    font-size: 13px;
+}
+
+.field-avatar {
+    display: flex;
+    width: 1.5em; height: 1.5em;
+    background: #426ab2;
+    border-radius: 50%;
+}
+.project-updated_at {
+    width: 15%;
+}
+.project-updated_at span {
+    font-size: 13px;
+}
+
+.project-status {
+    width: 10%;
+}
+
+.project-status span {
+    background: orange;
+    padding: .15em .45em;
+    border-radius: .05em;
+}
+
+.project-owner {
+    width: 15%;
+}
+
+.project-team {
+    width: 15%;
+}
+
+
+.skelet_project_detailed {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    height: 3em;
+    margin-bottom: 0.1em;
+    padding-inline: 1em;
+    box-shadow: 0 2px 2px -2px #86a3ad;
+}
+
+.data-fields {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+}
+
+.data-field {
+    height: 100%;
+    padding-inline: 0.5em;
+    font-size: 15px;
+}
+
+.skelet_project_detailed_icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 1/1;
+    padding-right: 0.5em;
+}
+.skelet_project_detailed_icon_square {
+    display: flex;
+    width: 1em; height: 1em;
+    background: transparent;
+    border: 1px solid #86a3ad;
+}
 
 .skelet_add_project {
     text-decoration: none;
@@ -334,7 +465,6 @@ main {
 
 
 .curtain-start {
-    display: flex;
     position: absolute;
     top: 0;
     left: 0;
@@ -346,7 +476,6 @@ main {
 }
 
 .curtain-end {
-    display: flex;
     position: absolute;
     top: 0;
     left: 0;
@@ -367,6 +496,7 @@ main {
     }
     100% {
         transform: translateY(100%);
+        display: none;
     }
 }
 
@@ -391,3 +521,23 @@ main {
         filter: none;
     }
 }
+
+.display-view-change {
+    position: relative;
+    display: flex;
+    height: 100%;
+    aspect-ratio: 1/1;
+    /*background: var(--color-primary);*/
+}
+
+.display-view-change img {
+    width: 3em; height: 3em;
+    cursor: pointer;
+}
+
+.active-details, .active-simple {
+    display: flex;
+}
+
+
+
