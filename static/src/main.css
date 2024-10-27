@@ -60,6 +60,7 @@
     width: 3em;
     height: 3em;
     transition: background-color .2s ease-in-out;
+    animation: change-effect 250ms ease-in-out forwards;
 }
 
 .icon_container > .navbar_container {
@@ -118,6 +119,7 @@
 }
 
 main {
+    position: relative;
     display: flex;
     width: 100%;
 }
@@ -257,6 +259,7 @@ main {
     grid-column: span 2;
     grid-row: span 2;
 }
+
 .tile_container:nth-child(3) {
     grid-column: span 2;
     grid-row: span 4;
@@ -330,3 +333,61 @@ main {
 }
 
 
+.curtain-start {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: var(--color-primary);
+    z-index: 100;
+    animation: reveal-curtain 250ms forwards;
+}
+
+.curtain-end {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: var(--color-primary);
+    z-index: 100;
+    transform: translateX(100%);
+}
+
+.active-curtain-end {
+    animation: hide-curtain 250ms ease-in-out forwards;
+}
+
+@keyframes reveal-curtain {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(100%);
+    }
+}
+
+@keyframes hide-curtain {
+    0% {
+        transform: translateX(100%) translateY(100%);
+    }
+    100% {
+        transform: translateX(0%) translateY(0%);
+    }
+}
+
+@keyframes change-effect {
+    0% {
+        filter: none;
+    }
+
+    50% {
+        filter: brightness(1.5) saturate(0.5);
+    }
+    100% {
+        filter: none;
+    }
+}
