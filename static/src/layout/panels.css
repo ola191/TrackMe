@@ -38,6 +38,7 @@
     text-align: center;
 }
 
+
 .panel-button:hover {
     background-color: var(--color-primary);
 }

@@ -8,9 +8,9 @@
 .form-field input {
     width: 100%;
     color: white;
-    border: none;
     padding: 10px;
     border-radius: 4px;
     cursor: pointer;
     text-align: center;
+    border: 1px solid color-mix(in srgb, var(--color-primary) var(--transparency, 100%), transparent);
 }

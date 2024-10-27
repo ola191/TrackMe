@@ -1,25 +1,64 @@
-
-
 {% extends 'base.html' %}
 
 {% block title %}Projects{% endblock %}
 
 {% block content %}
+   <div class="w-full h-full flex-col">
+    <div class="project-search p2 form-field">
+        <input type="text" class="font-helv" style="color: black; font-size: 20px; border: 0.1em solid gray" id="search-input" placeholder="Search projects">
+    </div>
+
     <div class="skelet_projects_list">
-        <ul class="skelet_projects">
+        <ul class="skelet_projects" id="projects-list">
             {% for project in projects %}
-                <li class="skelet_project"><a href="{% url 'project_detail' project.pk %}">
-                    <p>{{ project.name }}</p>
-                    <p>{{ project.description }}</p>
-                </a>
+                <li class="skelet_project"
+                    data-name="{{ project.name }}"
+                    data-description="{{ project.description }}"
+                    data-owner="{{ project.owner }}"
+                    data-team="{{ project.team }}"
+                    data-created="{{ project.created_at }}"
+                    data-updated="{{ project.updated_at }}">
+                    <a href="{% url 'project_detail' project.pk %}">
+                        <p>{{ project.name }}</p>
+                        <p>{{ project.description }}</p>
+                    </a>
                 </li>
             {% empty %}
                 <li>No projects found.</li>
             {% endfor %}
-            <li class="skelet_project"> <a class="" href="{% url 'project_create' %}">Add New Project</a>
-
+            <li class="skelet_project">
+                <a href="{% url 'project_create' %}">Add New Project</a>
             </li>
-
         </ul>
     </div>
+   </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const searchInput = document.getElementById('search-input');
+            const projectsList = document.getElementById('projects-list');
+            const projects = projectsList.getElementsByClassName('skelet_project');
+
+            searchInput.addEventListener('keyup', function () {
+                const filter = searchInput.value.toLowerCase();
+
+                Array.from(projects).forEach(function (project) {
+                    const name = project.getAttribute('data-name').toLowerCase();
+                    const description = project.getAttribute('data-description').toLowerCase();
+                    const owner = project.getAttribute('data-owner').toLowerCase();
+                    const team = project.getAttribute('data-team').toLowerCase();
+                    const created = project.getAttribute('data-created').toLowerCase();
+                    const updated = project.getAttribute('data-updated').toLowerCase();
+
+                    if (name.includes(filter) || description.includes(filter) ||
+                        owner.includes(filter) || team.includes(filter) ||
+                        created.includes(filter) || updated.includes(filter)) {
+                        project.style.display = '';
+                    } else {
+                        project.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
 {% endblock %}

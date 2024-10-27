@@ -5,17 +5,12 @@
 @import url("layout/spacing.css");
 @import url("layout/sizing.css");
 @import url("layout/panels.css");
+
 @import url("components/forms.css");
 
+@import url("decor/filters.css");
+
 /*##### LOGIN #####*/
-
-.template_navbar {
-
-}
-
-
-
-
 
 .skelet_navbar {
     display: flex;
@@ -136,9 +131,10 @@ main {
 }
 
 .skelet_project {
-    background-color: #426ab2;
+    background-color: var(--color-primary);
     box-shadow: 0px .5px .5px rgba(0, 0, 0, 0.5), 0px 0px 0px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.1);
     padding: 16px;
+    border: 3px dotted white;
     border-radius: 0.5em;
     cursor: pointer;
     max-width: 15em;

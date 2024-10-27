@@ -1,6 +1,36 @@
-<h3>Register</h3>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Register</button>
-</form>
+{#<h3>Register</h3>#}
+{#<form method="post">#}
+{#    {% csrf_token %}#}
+{#    {{ form.as_p }}#}
+{#    <button type="submit">Register</button>#}
+{#</form>#}
+{% extends 'base_short.html' %}
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+    <div class="h-full w-full center-hor-ver">
+        <div class="panel register-panel p2 flex-col center-ver center-hor">
+            <div class="px2 w-full">
+                <form method="post">
+                    {% csrf_token %}
+                    {% for field in form %}
+                        <div class="my1 flex-col form-field font-helv">
+                            <label class="py05" for="{{ field.id_for_label }}">{{ field.label }}</label>
+                            {{ field }}
+                            {% if field.errors %}
+                                <div class="error">{{ field.errors }}</div>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                    <button type="submit" class="panel-button" style="margin-top: 2em;">Sign Up</button>
+                </form> <a href="{% url 'login' %}" style="color: white; text-decoration: none;">
+                <button class="panel-button filter-pale my1">
+                   Login Form
+                </button></a>
+            </div>
+
+        </div>
+
+    </div>
+{% endblock %}
