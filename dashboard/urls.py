@@ -2,7 +2,7 @@ from django.urls import path
 
 from projects.views import project_create_view, project_list_view, project_detail_view
 from tasks.views import task_create_view, task_list_view, task_detail_view
-from .views import dashboard_view, projects_view, tasks_view
+from .views import dashboard_view, projects_view, tasks_view, settings_view
 
 urlpatterns = [
     path('', dashboard_view, name='dashboard'),
@@ -14,4 +14,5 @@ urlpatterns = [
     path('projects/<int:project_pk>/tasks/create/', task_create_view, name='task_create'),
     path('projects/lists', project_list_view, name='project_list'),
     path('projects/<int:project_pk>/project_detail/', project_detail_view, name='project_detail'),
+    path('settings/', settings_view, name='settings'),
 ]

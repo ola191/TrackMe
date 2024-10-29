@@ -1,8 +1,12 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
+from django.forms import model_to_dict
+from django.http import JsonResponse
+from django.shortcuts import render, redirect
 from django.db.models import Q
 from projects.models import Project
 from tasks.models import Task
+from users.forms import CustomUserChangeForm
+
 
 @login_required
 def dashboard_view(request):
@@ -13,7 +17,7 @@ def dashboard_view(request):
 
     recent_tasks = Task.objects.filter(project__in=combined_projects).order_by('-created_at')[:8]
     print(recent_tasks)
-    return render(request, 'users/dashboard.html', {
+    return render(request, 'dashboard/dashboard.html', {
         'recent_owner_projects': recent_owner_projects,
         'recent_team_projects':recent_team_projects,
         'recent_tasks': recent_tasks,
@@ -28,3 +32,16 @@ def projects_view(request):
 def tasks_view(request):
     tasks = Task.objects.all()
     return render(request, 'tasks/tasks.html', {'tasks': tasks})
+
+@login_required
+def settings_view(request):
+    user = request.user
+    if request.method == 'POST':
+        form = CustomUserChangeForm(request.POST, request.FILES, instance=user)
+        if form.is_valid():
+            form.save()
+            return redirect('settings')
+    else:
+        form = CustomUserChangeForm(instance=user)
+
+    return render(request, 'dashboard/settings.html', {'form': form})

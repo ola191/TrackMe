@@ -28,15 +28,23 @@
         <a href="{% url 'project_list' %}" class="redirect">
             <img src="{% static 'icons/projects.svg' %}">
         </a>
-               <span class="icon_label">
+        <span class="icon_label">
             projects
+        </span>
+    </div>
+    <div class="icon_container">
+        <a href="{% url 'settings' %}" class="redirect">
+            <img src="{% static 'icons/settings.svg' %}">
+        </a>
+        <span class="icon_label">
+            settings
         </span>
     </div>
     <div class="icon_container">
         <a href="{% url 'logout' %}" class="redirect">
             <img src="{% static 'icons/logout.svg' %}">
         </a>
-               <span class="icon_label">
+        <span class="icon_label">
             logout
         </span>
     </div>
@@ -50,11 +58,11 @@
     {% block content %}{% endblock %}
 </main>
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         const connectElements = document.querySelectorAll('[class*="connect:"]');
 
         connectElements.forEach(element => {
-            element.addEventListener('click', function() {
+            element.addEventListener('click', function () {
                 const connections = this.className.match(/connect:([^\s]+~[^\s]+)/g);
 
                 if (connections) {
@@ -76,7 +84,7 @@
         const redirectLinks = document.querySelectorAll('.redirect');
 
         redirectLinks.forEach(link => {
-            link.addEventListener('click', function(event) {
+            link.addEventListener('click', function (event) {
                 event.preventDefault();
 
                 document.querySelector('.curtain-end').classList.add("active-curtain-end");
@@ -89,7 +97,7 @@
                 });
 
                 setTimeout(() => {
-                    window.location.href = targetUrl; 
+                    window.location.href = targetUrl;
                 }, 250);
             });
         });
