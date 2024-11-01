@@ -1,9 +1,13 @@
+import os
+
 from asgiref.sync import async_to_sync
 from channels.layers import get_channel_layer
+from django.http import HttpResponse, Http404
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 
+from TrackMe import settings
 from users.models import CustomUser
 from .models import Project
 from .forms import ProjectForm, AddTeamMemberForm
@@ -77,3 +81,11 @@ def project_detail_view(request, project_pk):
         form = AddTeamMemberForm(project=project)
 
     return render(request, 'projects/project_detail.html', {'project': project, 'tasks': tasks, 'form': form})
+
+def serve_profile_picture(request, filename):
+    file_path = os.path.join(settings.PROFILE_PICTURES_ROOT, filename)
+    if os.path.exists(file_path):
+        with open(file_path, 'rb') as f:
+            return HttpResponse(f.read(), content_type="image/jpeg")
+    else:
+        raise Http404("File not found")

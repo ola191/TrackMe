@@ -61,6 +61,7 @@
     height: 3em;
     transition: background-color .2s ease-in-out;
     animation: change-effect 250ms ease-in-out forwards;
+
 }
 
 .icon_container > .navbar_container {
@@ -84,11 +85,58 @@
     height: 100%;
 }
 
+.icon_container img {
+    transition: all .5s ease-in-out;
+
+}
+
 .icon_container:hover {
     background: cornflowerblue;
     border-radius: 0.1em;
     filter: brightness(1.2);
 }
+
+.icon_container_settings {
+    position: relative;
+}
+
+.icon_container_settings::after {
+    content: "";
+    position: absolute;
+    top: 0; right: -2em;
+    width: 100%;
+    filter: brightness(50%);
+    height: 100%;
+    transform: scale(30%) translate(0%) rotate(-90deg);
+    background-image: url("../icons/expand_arrow.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.display_icon_inside {
+    transform: translateY(0em) !important;
+    opacity: 1 !important;
+    display: flex !important;
+}
+
+.icon_inside {
+    transform: translateY(0.1em);
+    opacity: 0;
+    display: none;
+}
+
+.image_anim_a {
+    transform: rotate(360deg);
+}
+
+/*@keyframes image_anim_a {*/
+/*    0% {*/
+/*        transform: translateX(0) rotate(0deg);*/
+/*    }*/
+/*    100% {*/
+/*        transform: translateX(-10vh) rotate(360deg);*/
+/*    }*/
+/*}*/
 
 .skelet_projects_list {
     display: none;
@@ -140,7 +188,7 @@
     background: #9ca8b4;
 }
 
-.skelet_projects_detailed a{
+.skelet_projects_detailed a {
     text-decoration: none;
     color: black;
 }
@@ -157,19 +205,48 @@
 .project-created_at {
     width: 15%;
 }
+
 .project-created_at span {
     font-size: 13px;
 }
 
 .field-avatar {
     display: flex;
-    width: 1.5em; height: 1.5em;
+    width: 1.5em;
+    height: 1.5em;
     background: #426ab2;
     border-radius: 50%;
+    position: relative;
 }
+
+.infobar {
+    display: none;
+    align-items: center; justify-content: space-between;
+    gap: 0.5em;
+    padding: .5em;
+    border-radius: .25em;
+    position: absolute;
+    top: 0; left: 0;
+    background: #dfeaff;
+    border: 2px solid #9ca8b4;
+    transform: scale(1.2) translateY(-110%);
+}
+
+.showInfoBar {
+    display: flex !important;
+}
+
+.field-avatar > img {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
 .project-updated_at {
     width: 15%;
 }
+
 .project-updated_at span {
     font-size: 13px;
 }
@@ -224,9 +301,11 @@
     aspect-ratio: 1/1;
     padding-right: 0.5em;
 }
+
 .skelet_project_detailed_icon_square {
     display: flex;
-    width: 1em; height: 1em;
+    width: 1em;
+    height: 1em;
     background: transparent;
     border: 1px solid #86a3ad;
 }
@@ -531,7 +610,8 @@ main {
 }
 
 .display-view-change img {
-    width: 3em; height: 3em;
+    width: 3em;
+    height: 3em;
     cursor: pointer;
 }
 

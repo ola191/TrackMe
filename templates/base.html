@@ -8,49 +8,8 @@
     <link rel="stylesheet" href="{% static 'src/main.css' %}">
 </head>
 <body>
-<nav class="skelet_navbar">
-    <div class="icon_container connect:navbar_expand~skelet_navbar connect:navbar_expand~icon_label">
-        <div class="navbar_container">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-    </div>
-    <div class="icon_container">
-        <a href="{% url 'dashboard' %}" class="redirect">
-            <img src="{% static 'icons/dashboard.svg' %}">
-        </a>
-        <span class="icon_label">
-            dashboard
-        </span>
-    </div>
-    <div class="icon_container">
-        <a href="{% url 'project_list' %}" class="redirect">
-            <img src="{% static 'icons/projects.svg' %}">
-        </a>
-        <span class="icon_label">
-            projects
-        </span>
-    </div>
-    <div class="icon_container">
-        <a href="{% url 'settings' %}" class="redirect">
-            <img src="{% static 'icons/settings.svg' %}">
-        </a>
-        <span class="icon_label">
-            settings
-        </span>
-    </div>
-    <div class="icon_container">
-        <a href="{% url 'logout' %}" class="redirect">
-            <img src="{% static 'icons/logout.svg' %}">
-        </a>
-        <span class="icon_label">
-            logout
-        </span>
-    </div>
-    <ul>
-    </ul>
-</nav>
+
+{% include 'navbar.html' %}
 
 <main>
     <div class="curtain-start"></div>
@@ -102,6 +61,76 @@
             });
         });
     });
+</script>
+{#<script>#}
+{##}
+{#const socket = new WebSocket(`ws://${window.location.host}/ws/notifications/`);#}
+{##}
+{#socket.onopen = function(e) {#}
+{#    console.log('WebSocket connection established.');#}
+{##}
+{#socket.onmessage = function(e) {#}
+{#    const data = JSON.parse(e.data);#}
+{#    console.log('Received message:', data);#}
+{##}
+{#    if (data.title === 'status') {#}
+{#        console.log(`User status: ${data.body}`);#}
+{#    } else if (data.title === 'project_update') {#}
+{#        console.log(`Project Updated: ${data.project_id} by User: ${data.user}`);#}
+{#    }#}
+{##}
+{#// Obsługuje zamknięcie połączenia#}
+{#socket.onclose = function(e) {#}
+{#    console.log('WebSocket connection closed.');#}
+{##}
+{#// Obsługuje błędy#}
+{#socket.onerror = function(error) {#}
+{#    console.error('WebSocket error:', error);#}
+{#</script>#}
+<script>
+    class WebSocketRefresh {
+    constructor(updateInterval = 1000) {
+        this.lastUpdateTime = Date.now();
+        this.timer = null;
+        this.updateInterval = updateInterval;
+    }
+
+    start() {
+        this.timer = setInterval(() => this.checkTimeSinceUpdate(), this.updateInterval);
+    }
+
+    resetTimer() {
+        this.lastUpdateTime = Date.now();
+    }
+
+    checkTimeSinceUpdate() {
+        const now = Date.now();
+        const timeSinceLastUpdate = Math.floor((now - this.lastUpdateTime) / 1000);
+        document.getElementById("last-update").innerText = `Ostatnia aktualizacja: ${timeSinceLastUpdate} sekund temu`;
+    }
+
+    stop() {
+        clearInterval(this.timer);
+    }
+}
+
+const ws = new WebSocket('ws://localhost:8000/ws/your_endpoint/');
+const refreshTimer = new WebSocketRefresh();
+
+ws.onopen = () => {
+    refreshTimer.start();
+};
+
+ws.onmessage = (event) => {
+    const data = JSON.parse(event.data);
+
+    refreshTimer.resetTimer(); 
+};
+
+ws.onclose = () => {
+    refreshTimer.stop();
+};
+
 </script>
 </body>
 </html>

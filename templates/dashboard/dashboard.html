@@ -65,18 +65,5 @@
             {% endfor %}
         </div>
     </div>
-    <script>
-    const socket = new WebSocket('ws://' + window.location.host + '/ws/notifications/');
 
-    socket.onmessage = function(event) {
-        const data = JSON.parse(event.data);
-        {#alert(`${data.title}: ${data.body}`);#}
-        window.location.reload();
-    };
-
-    socket.onclose = function(event) {
-        console.error('WebSocket closed unexpectedly');
-    };
-
-    </script>
 {% endblock %}

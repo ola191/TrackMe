@@ -10,6 +10,7 @@
                style="color: black; font-size: 20px; border: 0.1em solid gray" id="search-input"
                placeholder="Search projects">
         <div class="display-view-change">
+            <div id="last-update">Ostatnia aktualizacja: teraz</div>
             <img src="{% static 'icons/details.svg' %}">
         </div>
     </div>
@@ -70,7 +71,20 @@
                              {% if member.profile_picture == "" %}
                                  <div class="field-avatar"></div>
                              {% else %}
-                                 {{ member.profile_picture }}
+                                 <div class="field-avatar">
+
+                                    <img src="/dashboard{{ member.profile_picture.url }}" alt="">
+                                    <div class="infobar">
+                                        
+                                    <div class="field-avatar" field-user-id="{{ member.id }}" style="background: {% if member.status == "online" %}green{% else %}red{% endif %};">
+                                         </div>
+                                         <div class="field-avatar">
+                                            <img src="/dashboard{{ member.profile_picture.url }}" alt="">
+                                         </div>
+                                         <span>{{ member.first_name }}</span>
+                                         <span>{{ member.last_name }}</span>
+                                     </div>
+                                 </div>
                              {% endif %}
                              </div>
                          {% empty %}
@@ -88,8 +102,7 @@
         </ul>
         <div class="add-project">
             <li class="skelet_project_detailed">
-
-            <a href="{% url 'project_create' %}">Add New Project</a>
+                <a href="{% url 'project_create' %}" style="text-decoration: none; color: gray">Add New Project</a>
             </li>
 
         </div>
@@ -132,6 +145,16 @@
         document.querySelector(".display-view-change").addEventListener("click", (e) => {
             view_simple.classList.toggle("active-simple");
             view_detailed.classList.toggle("active-details");
+        })
+    </script>
+    <script>
+        document.querySelectorAll('.field-avatar').forEach(value => {
+            value.addEventListener('mouseenter', (event) => {
+                event.target.querySelector(".infobar").classList.toggle('showInfoBar')
+            })
+            value.addEventListener('mouseleave', (event) => {
+                event.target.querySelector(".infobar").classList.toggle('showInfoBar')
+            })
         })
     </script>
 {% endblock %}
