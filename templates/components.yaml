@@ -1,2 +1,3 @@
 components:
-  projects: "components/projects.html"
+  cprojects: "components/cprojects.html"
+  ctasks: "components/ctasks.html"

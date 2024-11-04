@@ -11,59 +11,17 @@
         <div class="divider_section">
             <p>Recent Owner Projects</p>
         </div>
-        {% #projects projects=recent_owner_projects %}{% /projects %}
-        <div class="skelet_projects_list">
-            <ul class="skelet_projects">
-                {% for project in recent_owner_projects %}
-                    <li class="skelet_project"><a href="{% url 'project_detail' project.pk %}">
-                        <p>{{ project.name }}</p>
-                        <p>{{ project.description }}</p>
-                    </a>
-                    </li>
-                {% empty %}
-                    <li>No projects found.</li>
-                {% endfor %}
-            </ul>
-        </div>
+        {% #cprojects projects=recent_owner_projects add_project=False %}{% /cprojects %}
         <br>
         <div class="divider_section">
             <p>Recent Team Projects</p>
         </div>
-        <div class="skelet_projects_list">
-            <ul class="skelet_projects">
-                {% for project in recent_team_projects %}
-                    <li class="skelet_project"><a href="{% url 'project_detail' project.pk %}">
-                        <p>{{ project.name }}</p>
-                        <p>{{ project.description }}</p>
-                    </a>
-                    </li>
-                {% empty %}
-                    <li class="skelet_project filter-pale" style="color: white">
-                        <p>No projects found.</p>
-                    </li>
-                {% endfor %}
-
-            </ul>
-        </div>
-        <br>
+        {% #cprojects projects=recent_team_projects add_project=False %}{% /cprojects %}
 
         <div class="divider_section">
             <p>Recent Tasks</p>
         </div>
-        <div class="skelet_tasks_list">
-            {% for task in recent_tasks %}
-                <ul class="skelet_tasks">
-                    <li>{{ task.title }}</li>
-                    <li>{{ task.assignee }}</li>
-                    <li>{{ task.status }}</li>
-                    <li>{{ task.due_date }}</li>
-                </ul>
-            {% empty %}
-                    <li class="skelet_project filter-pale" style="color: white">
-                        <p>No tasks found.</p>
-                    </li>
-            {% endfor %}
-        </div>
-    </div>
+        {% #ctasks tasks=recent_tasks add_task=False %}{% /ctasks %}
 
+    </div>
 {% endblock %}

@@ -1,0 +1,66 @@
+{% load static %}
+
+<div class="skelet_projects_list_detailed" style="display: flex !important;">
+    <ul class="skelet_projects_detailed">
+        <div class="skelet_projects_list_detailed_devider">
+            <div class="skelet_projects_list_detailed_devider_icon">
+                <img src="{% static 'icons/expand_arrow.svg' %}" style="width: 1em; height: 1em">
+            </div>
+            <span class="skelet_projects_list_detailed_devider_label">All Tasks</span>
+        </div>
+        {% for project in tasks %}
+            <li class="skelet_project_detailed"
+                data-name="{{ project.title }}"
+                data-description="{{ project.status }}"
+                data-owner="{{ project.assignee }}"
+                data-team="{{ project.due_date }}">
+                <div class="skelet_project_detailed_icon">
+                    <div class="skelet_project_detailed_icon_square"></div>
+                </div>
+                <a href="{% url 'project_detail' project.pk %}" class="data-fields">
+                    <div class="data-field project-name"><span>{{ project.title }}</span></div>
+                    <div class="data-field project-description"><span>{{ project.status }}</span></div>
+                    <div class="data-field project-updated_at"><span>{{ project.due_date }}</span></div>
+                    <div class="data-field project-team"><span>
+                         {% for member in project.assignee.all %}
+                             <div class="project-single-member">
+                             {% if member.profile_picture == "" %}
+                                 <div class="field-avatar"></div>
+                             {% else %}
+                                 <div class="field-avatar">
+
+                                    <img src="/dashboard{{ member.profile_picture.url }}" alt="">
+                                    <div class="infobar">
+
+                                    <div class="field-avatar" field-user-id="{{ member.id }}"
+                                         style="background: {% if member.status == "online" %}green{% else %}red{% endif %};">
+                                         </div>
+                                         <div class="field-avatar">
+                                            <img src="/dashboard{{ member.profile_picture.url }}" alt="">
+                                         </div>
+                                         <span>{{ member.first_name }}</span>
+                                         <span>{{ member.last_name }}</span>
+                                     </div>
+                                 </div>
+                             {% endif %}
+                             </div>
+                         {% empty %}
+                             -
+                         {% endfor %}
+                        </span></div>
+                </a>
+            </li>
+        {% empty %}
+            <li>No projects found.</li>
+        {% endfor %}
+    </ul>
+    {% if add_task %}
+        <div class="add-project">
+            <li class="skelet_project_detailed">
+                <a href="{% url 'task_create' %}" style="text-decoration: none; color: gray">Add New Project</a>
+            </li>
+
+        </div>
+    {% endif %}
+
+</div>

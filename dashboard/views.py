@@ -16,7 +16,6 @@ def dashboard_view(request):
     combined_projects = recent_owner_projects | recent_team_projects
 
     recent_tasks = Task.objects.filter(project__in=combined_projects).order_by('-created_at')[:8]
-    print(recent_tasks)
     return render(request, 'dashboard/dashboard.html', {
         'recent_owner_projects': recent_owner_projects,
         'recent_team_projects':recent_team_projects,
