@@ -3,43 +3,69 @@
 {% block title %}FAQ{% endblock %}
 
 {% block content %}
-<div class="faq_template">
-    <div class="faq_container">
-        <div class="faq_container_title">
-            We are here to answer all your questions
-        </div>
-        <div class="faq_container_description">
-            If you have any problems, search by section corresponding to the sections, other questions are in #other section
-        </div>
-        <div class="faq_container_search">
-            <input type="search" placeholder="search problem">
-        </div>
-
-        {% for section in faq %}
-        <div class="faq_container_section">
-            <div class="faq_container_section_name">
-                {{ section.section_name }}
+    <div class="faq_template">
+        <div class="faq_container">
+            <div class="faq_container_title">
+                We are here to answer all your questions
+            </div>
+            <div class="faq_container_description">
+                If you have any problems, search by section corresponding to the sections, other questions are in #other
+                section
+            </div>
+            <div class="faq_container_search">
+                <input id="search_input" type="search" placeholder="search problem">
             </div>
 
-            {% for article in section.articles %}
-            <div class="faq_container_section_article">
-                <div class="faq_container_section_article_title">{{ article.title }}</div>
-                <div class="faq_container_section_article_description">{{ article.description }}</div>
-            </div>
+            {% for section in faq %}
+                <div class="faq_container_section">
+                    <div class="faq_container_section_name">
+                        {{ section.section_name }}
+                    </div>
+
+                    {% for article in section.articles %}
+                        <div class="faq_container_section_article">
+                            <div class="faq_container_section_article_title">{{ article.title }}</div>
+                            <div class="faq_container_section_article_description">{{ article.description }}</div>
+                        </div>
+                    {% endfor %}
+                </div>
             {% endfor %}
         </div>
-        {% endfor %}
     </div>
-</div>
     <script defer>
-    document.querySelectorAll(".faq_container_section_article").forEach(element => {
-        element.addEventListener("click", (event) => {
-            console.log(element)
-            element.querySelector(".faq_container_section_article_description").classList.toggle("change_article");
+        document.querySelectorAll(".faq_container_section_article").forEach(element => {
+            element.addEventListener("click", (event) => {
+                element.querySelector(".faq_container_section_article_description").classList.toggle("change_article");
+            })
         })
-    })
     </script>
     <script>
-        
+        document.getElementById("search_input").addEventListener("input", (event) => {
+            const search_text = event.target.value.toLowerCase();
+
+            document.querySelectorAll(".faq_container_section").forEach(section => {
+                let has_visible_articles = false;
+
+                section.querySelectorAll(".faq_container_section_article").forEach(article => {
+                    const title = article.querySelector(".faq_container_section_article_title").textContent.toLowerCase();
+                    const description = article.querySelector(".faq_container_section_article_description").textContent.toLowerCase();
+
+                    if (title.includes(search_text) || description.includes(search_text)) {
+                        article.style.display = "";
+                        has_visible_articles = true;
+                    } else {
+                        article.style.display = "none";
+                    }
+                });
+
+                if (has_visible_articles) {
+                    section.querySelector(".faq_container_section_name").style.display = "";
+                    section.style.display = "";
+                } else {
+                    section.querySelector(".faq_container_section_name").style.display = "none";
+                    section.style.display = "none";
+                }
+            });
+        });
     </script>
 {% endblock %}
