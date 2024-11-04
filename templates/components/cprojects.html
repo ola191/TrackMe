@@ -33,7 +33,7 @@
                              {% if member.profile_picture == "" %}
                                  <div class="field-avatar"></div>
                              {% else %}
-                                 <div class="field-avatar">
+                                 <div class="field-avatar" style="transform: translateX(-{{ forloop.counter0 }}vh)">
 
                                     <img src="/dashboard{{ member.profile_picture.url }}" alt="">
                                     <div class="infobar">

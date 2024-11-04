@@ -123,15 +123,20 @@
                     <hr>
                 </div>
                 <div class="settings_field">
+                    {% if form.profile_picture %}
                     <div class="settings_field_content" style="height: 15em">
                         <label class="settings_field_label" for="{{ form.profile_picture.id_for_label }}">profile_picture</label>
                         <div class="settings_field_output" style="display: flex; flex-direction: row">
-                            <img src="/dashboard{{ form.profile_picture.value.url }}" alt="">
-                            <div class="img_output">
+                            {% if form.profile_picture.value %}
+                                <img src="/dashboard{{ form.profile_picture.value.url }}" alt="">
+                            {% endif %}
+                                <div class="img_output">
                             {{ form.profile_picture }}
                             </div>
                         </div>
                     </div>
+
+                    {% endif %}
                     <hr>
                 </div>
                 </div>
