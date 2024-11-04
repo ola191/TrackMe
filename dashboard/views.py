@@ -44,3 +44,61 @@ def settings_view(request):
         form = CustomUserChangeForm(instance=user)
 
     return render(request, 'dashboard/settings.html', {'form': form})
+
+def faq_view(request):
+    faq_data = [
+        {
+            "section_name": "Login",
+            "articles": [
+                {
+                    "title": "Email Change",
+                    "description": "Changing your email address is currently unavailable."
+                },
+                {
+                    "title": "Username and Password",
+                    "description": "Use new passwords that haven't been used before."
+                }
+            ]
+        },
+        {
+            "section_name": "Register",
+            "articles": [
+                {
+                    "title": "Email Recovery and Password Reset",
+                    "description": "The email recovery and password reset features are currently unavailable."
+                },
+                {
+                    "title": "Password",
+                    "description": "Set a new password that hasn't been used before."
+                }
+            ]
+        },
+        {
+            "section_name": "Dashboard",
+            "articles": [
+                {
+                    "title": "What the Dashboard Displays",
+                    "description": "The dashboard shows your latest projects, projects you are part of, and recent tasks."
+                }
+            ]
+        },
+        {
+            "section_name": "Settings",
+            "articles": [
+                {
+                    "title": "Ability to Change Data",
+                    "description": "Data that is view-only is grayed out; other data can be modified normally."
+                }
+            ]
+        },
+        {
+            "section_name": "Other",
+            "articles": [
+                {
+                    "title": "Icons",
+                    "description": "A circle with an X indicates no users are available."
+                }
+            ]
+        }
+    ]
+    return render(request, 'dashboard/faq.html', {"faq" : faq_data})

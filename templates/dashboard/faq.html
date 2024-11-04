@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}FAQ{% endblock %}
+
+{% block content %}
+<div class="faq_template">
+    <div class="faq_container">
+        <div class="faq_container_title">
+            We are here to answer all your questions
+        </div>
+        <div class="faq_container_description">
+            If you have any problems, search by section corresponding to the sections, other questions are in #other section
+        </div>
+        <div class="faq_container_search">
+            <input type="search" placeholder="search problem">
+        </div>
+
+        {% for section in faq %}
+        <div class="faq_container_section">
+            <div class="faq_container_section_name">
+                {{ section.section_name }}
+            </div>
+
+            {% for article in section.articles %}
+            <div class="faq_container_section_article">
+                <div class="faq_container_section_article_title">{{ article.title }}</div>
+                <div class="faq_container_section_article_description">{{ article.description }}</div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+    <script defer>
+    document.querySelectorAll(".faq_container_section_article").forEach(element => {
+        element.addEventListener("click", (event) => {
+            console.log(element)
+            element.querySelector(".faq_container_section_article_description").classList.toggle("change_article");
+        })
+    })
+    </script>
+    <script>
+        
+    </script>
+{% endblock %}
