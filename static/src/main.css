@@ -219,6 +219,39 @@
     position: relative;
 }
 
+.field-avatar > img {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.field-avatar-empty {
+    display: flex;
+    width: 1.5em;
+    height: 1.5em;
+    border: 2px dotted #426ab2;
+    border-radius: 50%;
+    position: relative;
+}
+
+.field-avatar-empty::before {
+    content: "";
+    position: absolute;
+    top: 10%; left: 50%;
+    width: 15%; height: 80%;
+    background: #426ab2;
+    transform: translate(-50%, 0) rotate(45deg);
+}
+.field-avatar-empty::after {
+    content: "";
+    position: absolute;
+    left: 10%; top: 50%;
+    height: 15%; width: 80%;
+    background: #426ab2;
+    transform: translate(0, -50%) rotate(45deg);
+}
+
 .infobar {
     display: none;
     align-items: center; justify-content: space-between;
@@ -236,12 +269,6 @@
     display: flex !important;
 }
 
-.field-avatar > img {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-}
 
 .project-updated_at {
     width: 15%;
