@@ -11,6 +11,7 @@
         <div class="divider_section">
             <p>Recent Owner Projects</p>
         </div>
+        {% #projects projects=recent_owner_projects %}{% /projects %}
         <div class="skelet_projects_list">
             <ul class="skelet_projects">
                 {% for project in recent_owner_projects %}
@@ -22,7 +23,6 @@
                 {% empty %}
                     <li>No projects found.</li>
                 {% endfor %}
-
             </ul>
         </div>
         <br>

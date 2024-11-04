@@ -33,6 +33,8 @@ ALLOWED_HOSTS = []
 ASGI_APPLICATION = 'TrackMe.asgi.application'
 
 INSTALLED_APPS = [
+    'channels',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -43,9 +45,10 @@ INSTALLED_APPS = [
     'users',
     'dashboard.apps.DashboardConfig',
     'projects.apps.ProjectsConfig',
+    "django_components",
     'tasks.apps.TasksConfig',
-    'channels',
     'TrackMe',
+    'slippers',
 ]
 
 
@@ -74,8 +77,7 @@ ROOT_URLCONF = 'TrackMe.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
-        ,
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -84,6 +86,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+            "builtins": ["slippers.templatetags.slippers"],
         },
     },
 ]
@@ -138,7 +141,7 @@ USE_TZ = True
 
 STATIC_ROOT = ''
 STATIC_URL = 'static/'
-STATICFILES_DIRS = ('static',)
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 PROFILE_PICTURES_URL = '/profile_pictures/'
 PROFILE_PICTURES_ROOT = os.path.join(BASE_DIR, 'profile_pictures')

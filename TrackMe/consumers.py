@@ -12,20 +12,16 @@ class NotificationConsumer(AsyncWebsocketConsumer):
         self.user_id = self.scope['user'].id
         self.groups = await self.get_user_project_groups(self.user_id)
 
-        # Dodaj użytkownika do grup projektowych
         for group in self.groups:
             await self.channel_layer.group_add(group, self.channel_name)
 
         await self.accept()
 
-        # Ustaw status na online
         await self.set_user_status(online=True)
 
     async def disconnect(self, close_code):
-        # Ustaw status na offline
         await self.set_user_status(online=False)
 
-        # Usuń użytkownika z grup projektowych
         for group in self.groups:
             await self.channel_layer.group_discard(group, self.channel_name)
 
@@ -61,13 +57,11 @@ class NotificationConsumer(AsyncWebsocketConsumer):
         user_profile.save()
 
     async def get_user_project_groups(self, user_id):
-        # 1. Await the coroutine to get the actual list of projects
         projects = await self.get_projects_for_user(user_id)
         return [f"project_{project.id}" for project in projects]
 
     @database_sync_to_async
     def get_projects_for_user(self, user_id):
-        # Zwraca projekty, w których dany użytkownik jest członkiem zespołu
         return list(Project.objects.filter(team=user_id))
 
     async def get_project_members(self, project_id):
@@ -82,5 +76,4 @@ class NotificationConsumer(AsyncWebsocketConsumer):
     @database_sync_to_async
     def update_project_in_db(self, project_id, data):
         project = Project.objects.get(id=project_id)
-        # Dodaj logikę aktualizacji projektu tutaj
         project.save()
