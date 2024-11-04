@@ -4,27 +4,28 @@
 
 {% block content %}
     <div class="settings_template">
-        <div class="settings_header"></div>
+        <div class="settings_header">Settings</div>
         <div class="settings_navbar">
-            <div class="settings_navbar_item">Profile</div>
+            <div class="settings_navbar_item {% if view == "profile" %} settings_navbar_item_selected {% endif %}">
+                Profile
+            </div>
             <div class="settings_navbar_item">Projects</div>
             <div class="settings_navbar_item">Task</div>
             <div class="settings_navbar_item">Other</div>
         </div>
-        <form method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ form.media }}
-            {% for field in form %}
-                <div class="field">
-                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-                    {{ field }}
-                    {% if field.help_text %}
-                        <small>{{ field.help_text }}</small>
-                    {% endif %}
-                </div>
-            {% endfor %}
-            <button type="submit" class="btn-save">Save</button>
-        </form>
+        {% if view == "profile" %}
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.media }}
+                {% for field in form %}
+                    <div class="field">
+                        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                        {{ field }}
+                    </div>
+                {% endfor %}
+                <button type="submit" class="btn-save">Save</button>
+            </form>
+        {% endif %}
     </div>
     <script>
     </script>

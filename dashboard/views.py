@@ -43,7 +43,7 @@ def settings_view(request):
     else:
         form = CustomUserChangeForm(instance=user)
 
-    return render(request, 'dashboard/settings.html', {'form': form})
+    return render(request, 'dashboard/settings.html', {'form': form, 'view': 'profile'})
 
 def faq_view(request):
     faq_data = [
