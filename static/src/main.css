@@ -100,22 +100,23 @@
     position: relative;
 }
 
-.icon_container_settings::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: -2em;
-    width: 100%;
-    filter: brightness(50%);
-    height: 100%;
-    transform: scale(30%) translate(0%) rotate(-90deg);
-    background-image: url("../icons/expand_arrow.svg");
-    background-repeat: no-repeat;
-    background-size: contain;
-}
+/*.icon_container_settings::after {*/
+/*    content: "";*/
+/*    position: absolute;*/
+/*    top: 0;*/
+/*    right: -2em;*/
+/*    width: 100%;*/
+/*    filter: brightness(50%);*/
+/*    height: 100%;*/
+/*    transform: scale(30%) translate(0%) rotate(-90deg);*/
+/*    background-image: url("../icons/expand_arrow.svg");*/
+/*    background-repeat: no-repeat;*/
+/*    background-size: contain;*/
+/*}*/
 
 .display_icon_inside {
-    transform: translateY(0em) !important;
+    transform: translateY(0em) scale(0.85) !important;
+    filter: hue-rotate(235deg) invert(1);
     opacity: 1 !important;
     display: flex !important;
 }
