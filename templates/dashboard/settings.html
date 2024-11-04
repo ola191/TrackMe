@@ -17,13 +17,140 @@
             <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ form.media }}
-                {% for field in form %}
-                    <div class="field">
-                        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-                        {{ field }}
+
+                <div class="settings_fields_in_row">
+                    <div class="settings_field">
+                        <div class="settings_field_content">
+                            <label class="settings_field_label" for="{{ form.first_name.id_for_label }}">first
+                                name</label>
+                            <div class="settings_field_output">
+                                {{ form.first_name }}
+                            </div>
+                        </div>
+                        <hr>
                     </div>
-                {% endfor %}
-                <button type="submit" class="btn-save">Save</button>
+
+                    <div class="settings_field">
+                        <div class="settings_field_content">
+                            <label class="settings_field_label" for="{{ form.last_name.id_for_label }}">last
+                                name</label>
+                            <div class="settings_field_output">
+                                {{ form.last_name }}
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+
+                <div class="settings_fields_in_row">
+                    <div class="settings_field">
+                        <div class="settings_field_content">
+                            <label class="settings_field_label" for="{{ form.username.id_for_label }}">username</label>
+                            <div class="settings_field_output">
+                                {{ form.username }}
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+
+                    <div class="settings_field">
+                        <div class="settings_field_content">
+                            <label class="settings_field_label" for="{{ form.email.id_for_label }}">email</label>
+                            <div class="settings_field_output">
+                                {{ form.email }}
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+
+                <div class="settings_fields_in_row">
+                    <div class="settings_field">
+                        <div class="settings_field_content">
+                            <label class="settings_field_label" for="{{ form.last_login.id_for_label }}">last
+                                login</label>
+                            <div class="settings_field_output">
+                                {{ form.last_login }}
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+
+                    <div class="settings_field">
+                        <div class="settings_field_content">
+                            <label class="settings_field_label" for="{{ form.date_joined.id_for_label }}">date
+                                joined</label>
+                            <div class="settings_field_output">
+                                {{ form.date_joined }}
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+
+                <div class="settings_fields_in_row">
+                    <div class="settings_field">
+                        <div class="settings_field_content">
+                            <label class="settings_field_label" for="{{ form.is_staff.id_for_label }}">staff
+                            </label>
+                            <div class="settings_field_output">
+                                {{ form.is_staff }}
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+
+                    <div class="settings_field">
+                        <div class="settings_field_content">
+                            <label class="settings_field_label" for="{{ form.is_superuser.id_for_label }}">super user
+                            </label>
+                            <div class="settings_field_output">
+                                {{ form.is_superuser }}
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+
+                <div class="settings_fields_in_row" style="">
+                <div class="settings_field">
+                    <div class="settings_field_content" style="height: 15em">
+                        <label class="settings_field_label" for="{{ form.bio.id_for_label }}">bio</label>
+                        <div class="settings_field_output">
+                            {{ form.bio }}
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+                <div class="settings_field">
+                    <div class="settings_field_content" style="height: 15em">
+                        <label class="settings_field_label" for="{{ form.profile_picture.id_for_label }}">profile_picture</label>
+                        <div class="settings_field_output" style="display: flex; flex-direction: row">
+                            <img src="/dashboard{{ form.profile_picture.value.url }}" alt="">
+                            <div class="img_output">
+                            {{ form.profile_picture }}
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+                </div>
+
+
+
+
+                <div class="settings_field">
+                    <div class="settings_field_content">
+                        <label class="settings_field_label" for="{{ form.status.id_for_label }}">status
+                        </label>
+                        <div class="settings_field_output">
+                            {{ form.status }}
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+
+                <button type="submit" class="settings_btn_save">Save</button>
             </form>
         {% endif %}
     </div>

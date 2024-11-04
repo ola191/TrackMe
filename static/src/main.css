@@ -655,6 +655,7 @@ main {
     display: flex;
 }
 
+
 /* FAQ */
 
 .faq_template {
@@ -764,4 +765,116 @@ main {
     100% {
         opacity: 1;
     }
+}
+
+
+/* SETTINGS */
+
+.settings_template {
+    width: 100%;
+    height: 100%;
+    padding: 1em;
+    font-family: "Helvetica Neue", Arial, "Lucida Grande", sans-serif;
+    overflow-y: auto;
+    max-height: 100vh;
+}
+
+.settings_header {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 0.5em 0;
+}
+
+.settings_navbar {
+    display: flex;
+    margin: 0.5em 0 1em;
+    border-bottom: 2px solid #b4c4c9;
+    position: relative;
+}
+
+.settings_navbar_item {
+    padding: 0.5em;
+    transition: border .5s ease-in-out, color .5s ease-in-out;
+    color: #6e6e6e;
+    position: relative;
+}
+
+/*.settings_navbar::before {*/
+/*    content: "";*/
+/*    position: absolute;*/
+/*    top: 0;*/
+/*    left: 0;*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*    border-bottom: 2px solid lightgray;*/
+/*    transform: translateY(-2px);*/
+/*}*/
+
+.settings_navbar_item:hover {
+    padding: 0.5em;
+    border-bottom: 2px solid #6c90d2;
+    color: #426ab2;
+}
+
+.settings_navbar_item_selected {
+    border-bottom: 2px solid #426ab2;
+    color: black;
+}
+
+.settings_fields_in_row {
+    display: flex;
+    flex-direction: row;
+}
+
+.settings_field {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: .5em .5em;
+    font-weight: bolder;
+}
+
+.settings_field_content {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    margin-bottom: .5em;
+    padding: 1em 0;
+}
+
+.settings_field_label {
+    margin-right: 1em;
+    font-size: .9em;
+}
+
+.settings_field_output input {
+    height: 2em;
+    width: fit-content;
+    border-radius: .5em;
+    padding: 1.5em;
+    border: 1px solid #b4c4c9;
+}
+
+.img_output {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1em;
+}
+
+.settings_field hr {
+    width: 100%;
+}
+
+.settings_btn_save {
+    margin: 2em 0.5em;
+    height: 1.5em;
+    width: fit-content;
+    border-radius: .5em;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5em;
+    border: 1px solid #b4c4c9;
 }
