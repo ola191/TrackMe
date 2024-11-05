@@ -32,6 +32,10 @@ def login_view(request):
     return render(request, 'users/login.html', {"form": form})
 
 @login_required
+def friends_view(request):
+    return render(request, 'users/friends.html', {})
+
+@login_required
 def logout_view(request):
     logout(request)
     return redirect('login')
