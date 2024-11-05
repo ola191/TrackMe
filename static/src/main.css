@@ -219,7 +219,8 @@
     height: 1.5em;
     background: #426ab2;
     border-radius: 50%;
-    position: relative;
+    position: absolute;
+    top: .75em; left: .75em;
 }
 
 .field-avatar > img {
@@ -305,14 +306,14 @@
 .project-team {
     display: flex;
     flex-direction: row;
-    width: 15%;
+    position: relative;
+    width: 15%; height: 100%;
 }
-
-
 
 .project-team span {
     display: flex;
     flex-direction: row;
+    position: relative;
 }
 .skelet_project_detailed {
     display: flex;
@@ -327,12 +328,15 @@
 
 .data-fields {
     display: flex;
+    align-items: center;
     flex-direction: row;
     width: 100%;
-    align-items: center;
+    height: 3em;
 }
 
 .data-field {
+    display: flex;
+    align-items: center;
     height: 100%;
     padding-inline: 0.5em;
     font-size: 15px;
