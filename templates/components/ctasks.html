@@ -52,13 +52,15 @@
                 </a>
             </li>
         {% empty %}
-            <li>No projects found.</li>
+            <li class="skelet_project_detailed">
+                <span style="color: gray">No tasks found.</span>
+            </li>
         {% endfor %}
     </ul>
     {% if add_task %}
         <div class="add-project">
             <li class="skelet_project_detailed">
-                <a href="{% url 'task_create' %}" style="text-decoration: none; color: gray">Add New Project</a>
+                <a href="{% url 'task_create' %}" style="text-decoration: none; color: gray">Add New Task</a>
             </li>
 
         </div>
