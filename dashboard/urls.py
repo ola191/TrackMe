@@ -9,14 +9,29 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('', dashboard_view, name='dashboard'),
+
+    # ######## ## ######## ## ######## ## ######## ## ######## ## ######## ## ######## #
+    # ######## ## ######## ## ######## ## PROJECTS ## ######## ## ######## ## ######## #
+    # ######## ## ######## ## ######## ## ######## ## ######## ## ######## ## ######## #
+
     path('projects/', projects_view, name='projects'),
-    path('tasks/', tasks_view, name='tasks'),
     path('projects/<int:project_pk>/tasks/list', task_list_view, name='task_list'),
     path('projects/<int:project_pk>/tasks/<int:task_pk>/detail', task_detail_view, name='task_detail'),
     path('projects/create/', project_create_view, name='project_create'),
     path('projects/<int:project_pk>/tasks/create/', task_create_view, name='task_create'),
     path('projects/lists', project_list_view, name='project_list'),
     path('projects/<int:project_pk>/project_detail/', project_detail_view, name='project_detail'),
+
+    # ######## ## ######## ## ######## ## ######## ## ######## ## ######## ## ######## #
+    # ######## ## ######## ## ######## ## TASKS ## ######## ## ######## ## ######## #
+    # ######## ## ######## ## ######## ## ######## ## ######## ## ######## ## ######## #
+
+    path('tasks/', tasks_view, name='tasks'),
+
+    # ######## ## ######## ## ######## ## ######## ## ######## ## ######## ## ######## #
+    # ######## ## ######## ## ######## ## OTHER ## ######## ## ######## ## ######## #
+    # ######## ## ######## ## ######## ## ######## ## ######## ## ######## ## ######## #
+
     path('settings/', settings_view, name='settings'),
     path('profile_pictures/<str:filename>/', serve_profile_picture, name='profile_picture'),
     path('faq', faq_view, name='faq'),
