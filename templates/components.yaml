@@ -2,3 +2,4 @@ components:
   cprojects: "components/cprojects.html"
   ctasks: "components/ctasks.html"
   cnavbar: "components/cnavbar.html"
+  cnotifications: "components/cnotifications.html"

@@ -16,10 +16,16 @@ def dashboard_view(request):
     combined_projects = recent_owner_projects | recent_team_projects
 
     recent_tasks = Task.objects.filter(project__in=combined_projects).order_by('-created_at')[:8]
+
+    new_notifications = [
+        'test1', 'test2', 'test3', 'test4', 'test5', 'test6', 'test7', 'test8'
+    ]
+
     return render(request, 'dashboard/dashboard.html', {
         'recent_owner_projects': recent_owner_projects,
         'recent_team_projects':recent_team_projects,
         'recent_tasks': recent_tasks,
+        'new_notifications' : new_notifications
     })
 
 @login_required
