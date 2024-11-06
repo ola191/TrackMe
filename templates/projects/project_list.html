@@ -7,7 +7,7 @@
     <div class="w-full h-full flex-col">
     <div class="project-search p2 form-field" style="position: relative; display: flex; gap: 1em">
         <input type="text" autocomplete="off" class="font-helv"
-               style="color: black; font-size: 20px; border: 0.1em solid gray" id="search-input"
+               style="color: black; font-size: 20px; border-radius: 0; border: none; outline:none; border-bottom: 0.1em solid gray" id="search-input"
                placeholder="Search projects">
         <div class="display-view-change">
             <img src="{% static 'icons/details.svg' %}">
@@ -15,7 +15,6 @@
     </div>
 
     {% #cprojects projects=projects add_project=True %}{% /cprojects %}
-
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
