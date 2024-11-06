@@ -1,4 +1,5 @@
 {% extends 'base_short.html' %}
+{% load static %}
 
 {% block title %}Register{% endblock %}
 
@@ -18,13 +19,13 @@
                         </div>
                     {% endfor %}
                     <button type="submit" class="panel-button" style="margin-top: 2em;">Sign Up</button>
-                </form> <a href="{% url 'login' %}" style="color: white; text-decoration: none;">
-                <button class="panel-button filter-pale my1">
-                   Login Form
-                </button></a>
+                </form>
+                <a href="{% url 'login' %}" style="color: white; text-decoration: none;">
+                    <button class="panel-button filter-pale my1">
+                        Login Form
+                    </button>
+                </a>
             </div>
-
         </div>
-
     </div>
 {% endblock %}
