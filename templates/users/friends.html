@@ -3,122 +3,102 @@
 {% block title %}Friends{% endblock %}
 
 {% block content %}
-<div class="friends_template">
-    <h1>Friendship Management</h1>
+    <div class="friends_template">
 
-    <div class="search_for_friends">
-        <h2>Search for Friends</h2>
-        <input type="text" id="search_query" placeholder="Enter username">
-        <button onclick="searchUsers()">Search</button>
+        <div class="search_for_friends">
+            <div class="divider_section">
+                Search for Friends
+            </div>
+            <input type="text" id="search_query" placeholder="Enter username">
+            <button onclick="searchUsers()">Search</button>
 
-        <div id="search_results">
+            <div id="search_results">
+            </div>
         </div>
+
+        <div class="friends_container">
+            <div class="friend_list">
+                <div class="divider_section">
+                    Current Friends & Statuses
+                </div>
+                {% #cnotifications notifications=friends %}{% /cnotifications %}
+
+
+                <div class="divider_section">
+                    Blocked & Declined Users
+                </div>
+                {% #cnotifications notifications=blocked_users %}{% /cnotifications %}
+
+            </div>
+
+            <div class="pending_requests">
+                <div class="divider_section">
+                </div>
+                {% #cnotifications notifications=incoming_requests incoming_requests=True %}{% /cnotifications %}
+
+            </div>
+        </div>
+
     </div>
 
-    <div class="friends_container">
-        <div class="friend_list">
-            <h2>Current Friends & Statuses</h2>
-            <ul>
-                {% for friend in friends %}
-                    <li>
-                    <script>
-                        console.log("{{ friend.other_user }}")
-                    </script>
-                        <strong>{{ friend.other_user.username }}</strong> - {{ friend.get_status_display }}
-                    </li>
-                {% empty %}
-                    <li>No friends to display</li>
-                {% endfor %}
-            </ul>
+    <script>
+        function searchUsers() {
+            const query = document.getElementById('search_query').value;
+            fetch("{% url 'search_users' %}?search_query=" + query)
+                .then(response => response.json())
+                .then(data => {
+                    const resultsContainer = document.getElementById('search_results');
+                    resultsContainer.innerHTML = '';
 
-            <h2>Blocked & Declined Users</h2>
-            <ul>
-                {% for blocked_user in blocked_users %}
-                    <li>
-                        <strong>{{ blocked_user.other_user.username }}</strong> - {{ blocked_user.get_status_display }}
-                    </li>
-                {% empty %}
-                    <li>No blocked or declined users</li>
-                {% endfor %}
-            </ul>
-        </div>
-
-        <div class="pending_requests">
-            <h2>Pending Friend Requests</h2>
-            <ul>
-                {% for request in incoming_requests %}
-                    <li>
-                        <strong>{{ request.from_user.username }}</strong> has sent you a friend request.
-                        <button onclick="respondToRequest('{{ request.id }}', 'accept')">Accept</button>
-                        <button onclick="respondToRequest('{{ request.id }}', 'decline')">Decline</button>
-                        <button onclick="respondToRequest('{{ request.id }}', 'block')">Block</button>
-                    </li>
-                {% empty %}
-                    <li>No pending friend requests</li>
-                {% endfor %}
-            </ul>
-        </div>
-    </div>
-</div>
-
-<script>
-    function searchUsers() {
-        const query = document.getElementById('search_query').value;
-        fetch("{% url 'search_users' %}?search_query=" + query)
-            .then(response => response.json())
-            .then(data => {
-                const resultsContainer = document.getElementById('search_results');
-                resultsContainer.innerHTML = '';
-
-                if (data.users.length > 0) {
-                    const ul = document.createElement('ul');
-                    data.users.forEach(user => {
-                        const li = document.createElement('li');
-                        li.innerHTML = `<strong>${user.username}</strong>
+                    if (data.users.length > 0) {
+                        const ul = document.createElement('ul');
+                        data.users.forEach(user => {
+                            const li = document.createElement('li');
+                            li.innerHTML = `<span>${user.username}</span>
                                         <button onclick="sendFriendRequest(${user.id})">Send Request</button>`;
-                        ul.appendChild(li);
-                    });
-                    resultsContainer.appendChild(ul);
-                } else {
-                    resultsContainer.innerHTML = '<p>No users found</p>';
-                }
-            });
-    }
+                            ul.appendChild(li);
+                        });
+                        resultsContainer.appendChild(ul);
+                    } else {
+                        resultsContainer.innerHTML = '<p>No users found</p>';
+                    }
+                });
+        }
 
-    function sendFriendRequest(userId) {
-        fetch("{% url 'send_friend_request' %}", {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRFToken': '{{ csrf_token }}'
-            },
-            body: JSON.stringify({ user_id: userId })
-        })
-        .then(response => response.json())
-        .then(data => {
-            alert(data.message);
-            if (data.success) {
-                searchUsers();
-            }
-        });
-    }
+        function sendFriendRequest(userId) {
+            fetch("{% url 'send_friend_request' %}", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}'
+                },
+                body: JSON.stringify({user_id: userId})
+            })
+                .then(response => response.json())
+                .then(data => {
+                    alert(data.message);
+                    if (data.success) {
+                        searchUsers();
+                    }
+                });
+        }
 
-    function respondToRequest(requestId, action) {
-        fetch("{% url 'respond_friend_request' %}", {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRFToken': '{{ csrf_token }}'
-            },
-            body: JSON.stringify({ request_id: requestId, action: action })
-        })
-        .then(response => response.json())
-        .then(data => {
-            alert(data.message);
-            if (data.success) {
-                location.reload();
-            }
-        });
-    }
-</script>
+        function respondToRequest(requestId, action) {
+            fetch("{% url 'respond_friend_request' %}", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}'
+                },
+                body: JSON.stringify({request_id: requestId, action: action})
+            })
+                .then(response => response.json())
+                .then(data => {
+                    alert(data.message);
+                    if (data.success) {
+                        location.reload();
+                    }
+                });
+        }
+    </script>
 {% endblock %}

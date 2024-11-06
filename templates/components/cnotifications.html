@@ -10,10 +10,26 @@
         </div>
         {% for notification in notifications %}
             <a href="" class="data-fields data-fields-notifications">
-                <div class="data-field notification-from"><span>{{ notification.from_user }}</span></div>
-                <div class="data-field notification-to"><span>{{ notification.to_user }}</span></div>
-                <div class="data-field notification-status"><span style="background: {% if notification.status == 'requested' %} yellow {% endif %};">{{ notification.status }}</span></div>
-                <div class="data-field notification-created"><span>{{ notification.created_at }}</span></div>
+                {% if incoming_requests %}
+                    <div class="data-field notification-from"><span>{{ notification.from_user.username }}</span></div>
+{#                    <div class="data-field notification-status"><span#}
+{#                            style="background: {% if notification.status == 'requested' %} yellow {% endif %};">{{ notification.status }}</span>#}
+{#                    </div>#}
+                    <button style="background: rgb(100, 200, 100)" class="incoming_requests_button" onclick="respondToRequest('{{ notification.id }}', 'accept')">Accept</button>
+                    <button style="background: rgb(200, 100, 100)" class="incoming_requests_button" onclick="respondToRequest('{{ notification.id }}', 'decline')">Decline</button>
+                    <button style="background: rgb(0, 0, 0); color: white" class="incoming_requests_button" onclick="respondToRequest('{{ notification.id }}', 'block')">Block</button>
+                {% else %}
+                    <div class="data-field notification-from"><span>{{ notification.from_user }}</span></div>
+                    <div class="data-field notification-to"><span>{{ notification.to_user }}</span></div>
+                    <div class="data-field notification-status"><span
+                            style="background: {% if notification.status == 'requested' %} yellow {% endif %};">{{ notification.status }}</span>
+                    </div>
+                    <div class="data-field notification-created"><span>{{ notification.created_at }}</span></div>
+                {% endif %}
+            </a>
+        {% empty %}
+            <a href="" class="data-fields data-fields-notifications">
+                <div class="data-field notification-from"><span style="color: gray">None notifications</span></div>
             </a>
         {% endfor %}
     </ul>
