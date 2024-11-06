@@ -6,6 +6,8 @@
 {% block content %}
     <div class="h-full w-full center-hor-ver main_element">
         <div class="panel login-panel p2 flex-col center-ver center-hor">
+            <img src="{% static 'icons/logo.svg' %}" style="display: flex;">
+
             <div class="px2 w-full">
                 <form method="post">
                     {% csrf_token %}
@@ -28,8 +30,7 @@
             </div>
         </div>
     </div>
-    <div class="second_element" style="position: absolute; display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; pointer-events: none">
-        <img src="{% static 'icons/logo.svg' %}" style="display: flex; transform: translateY(-175%) scale(2);">
+    <div class="second_element" style="position: absolute; display: flex; align-items: start; justify-content: center; width: 100%; height: 100%; pointer-events: none">
     </div>
 {% endblock %}
 

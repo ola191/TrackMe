@@ -7,7 +7,7 @@
 .login-panel {
     width: 100%;
     max-width: 400px;
-    height: 350px;
+    height: auto;
     --transparency: 2%;
     background-color: color-mix(in srgb, var(--color-primary) var(--transparency, 100%), transparent);
 }
