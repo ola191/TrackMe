@@ -1,12 +1,15 @@
 {% load static %}
 
 <div class="skelet_projects_list_detailed" style="display: flex !important;">
-    <ul class="skelet_projects_detailed">
+    <ul class="skelet_projects_detailed" data-skelet-filter-container="projects">
         <div class="skelet_projects_list_detailed_devider">
             <div class="skelet_projects_list_detailed_devider_icon">
                 <img src="{% static 'icons/expand_arrow.svg' %}" style="width: 1em; height: 1em">
             </div>
             <span class="skelet_projects_list_detailed_devider_label">All Projects</span>
+            <div style="width: 100%; height: 100%; display: flex; align-items: center; gap: 0.25em" data-skelet-filter-bar>
+
+            </div>
         </div>
         {% for project in projects %}
             <li class="skelet_project_detailed"
@@ -16,17 +19,19 @@
                 data-team="{{ project.team }}"
                 data-status="{{ project.status }}"
                 data-created="{{ project.created_at }}"
-                data-updated="{{ project.updated_at }}">
+                data-updated="{{ project.updated_at }}"
+                data-skelet-filter-row
+            >
                 <div class="skelet_project_detailed_icon">
                     <div class="skelet_project_detailed_icon_square"></div>
                 </div>
                 <a href="{% url 'project_detail' project.pk %}" class="data-fields">
-                    <div class="data-field project-name"><span>{{ project.name }}</span></div>
-                    <div class="data-field project-description"><span>{{ project.description }}</span></div>
+                    <div class="data-field project-name" data-skelet-filter-drag="name"><span>{{ project.name }}</span></div>
+                    <div class="data-field project-description" data-skelet-filter-drag="description"><span>{{ project.description }}</span></div>
                     <div class="data-field project-created_at"><span>{{ project.created_at }}</span></div>
                     <div class="data-field project-updated_at"><span>{{ project.updated_at }}</span></div>
-                    <div class="data-field project-status"><span data-palet="projects" data-palet-type="{{ project.status }}">{{ project.status }}</span></div>
-                    <div class="data-field project-owner"><span>{{ project.owner }}</span></div>
+                    <div class="data-field project-status" data-skelet-filter-drag="status"><span data-palet="projects" data-palet-type="{{ project.status }}">{{ project.status }}</span></div>
+                    <div class="data-field project-owner" data-skelet-filter-drag="owner"><span>{{ project.owner }}</span></div>
                     <div class="data-field project-team">
                         {% for member in project.team.all %}
                             {% if member.profile_picture == "" %}
