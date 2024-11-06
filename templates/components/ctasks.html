@@ -21,14 +21,7 @@
                 <a href="" class="data-fields">
                     <div class="data-field project-name"><span>{{ task.title }}</span></div>
                     <div class="data-field task-description"><span>{{ task.description }}</span></div>
-                    <div class="data-field project-status"><span
-                            style="background:
-                                    {% if task.status == 'In Progress' %} yellow
-                                    {% elif task.status == 'To Do' %} orange
-                                    {% elif task.status == 'Completed' %} rgb(100, 200, 100)
-                                    {% endif %}
-                                    "
-                    >{{ task.status }}</span></div>
+                    <div class="data-field project-status"><span data-palet="tasks" data-palet-type="{{ task.status }}">{{ task.status }}</span></div>
                     <div class="data-field project-updated_at"><span>{{ task.due_date }}</span></div>
                     <div class="data-field project-team"><span>
                          {% for member in task.assignee.all %}
