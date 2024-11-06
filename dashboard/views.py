@@ -1,3 +1,4 @@
+from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.forms import model_to_dict
 from django.http import JsonResponse
@@ -6,6 +7,7 @@ from django.db.models import Q
 from projects.models import Project
 from tasks.models import Task
 from users.forms import CustomUserChangeForm
+from users.models import Friendship
 
 
 @login_required
@@ -17,9 +19,8 @@ def dashboard_view(request):
 
     recent_tasks = Task.objects.filter(project__in=combined_projects).order_by('-created_at')[:8]
 
-    new_notifications = [
-        'test1', 'test2', 'test3', 'test4', 'test5', 'test6', 'test7', 'test8'
-    ]
+    new_notifications = Friendship.objects.filter(to_user=request.user, status='requested').order_by('-created_at')[:8]
+    print(f"new notifications: {new_notifications}")
 
     return render(request, 'dashboard/dashboard.html', {
         'recent_owner_projects': recent_owner_projects,
