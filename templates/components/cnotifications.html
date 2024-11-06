@@ -12,17 +12,13 @@
             <a href="" class="data-fields data-fields-notifications">
                 {% if incoming_requests %}
                     <div class="data-field notification-from"><span>{{ notification.from_user.username }}</span></div>
-{#                    <div class="data-field notification-status"><span#}
-{#                            style="background: {% if notification.status == 'requested' %} yellow {% endif %};">{{ notification.status }}</span>#}
-{#                    </div>#}
-                    <button style="background: rgb(100, 200, 100)" class="incoming_requests_button" onclick="respondToRequest('{{ notification.id }}', 'accept')">Accept</button>
-                    <button style="background: rgb(200, 100, 100)" class="incoming_requests_button" onclick="respondToRequest('{{ notification.id }}', 'decline')">Decline</button>
-                    <button style="background: rgb(0, 0, 0); color: white" class="incoming_requests_button" onclick="respondToRequest('{{ notification.id }}', 'block')">Block</button>
+                    <button data-palet="notifications" data-palet-type="accepted" class="incoming_requests_button" onclick="respondToRequest('{{ notification.id }}', 'accept')">Accept</button>
+                    <button data-palet="notifications" data-palet-type="declined" class="incoming_requests_button" onclick="respondToRequest('{{ notification.id }}', 'decline')">Decline</button>
+                    <button data-palet="notifications" data-palet-type="blocked" class="incoming_requests_button" onclick="respondToRequest('{{ notification.id }}', 'block')">Block</button>
                 {% else %}
                     <div class="data-field notification-from"><span>{{ notification.from_user }}</span></div>
                     <div class="data-field notification-to"><span>{{ notification.to_user }}</span></div>
-                    <div class="data-field notification-status"><span
-                            style="background: {% if notification.status == 'requested' %} yellow {% endif %};">{{ notification.status }}</span>
+                    <div class="data-field notification-status"><span data-palet="notifications" data-palet-type="{{ notification.status }}" >{{ notification.status }}</span>
                     </div>
                     <div class="data-field notification-created"><span>{{ notification.created_at }}</span></div>
                 {% endif %}
