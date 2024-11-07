@@ -1,12 +1,13 @@
 {% load static %}
 
 <div class="skelet_projects_list_detailed" style="display: flex !important;">
-    <ul class="skelet_projects_detailed">
+    <ul class="skelet_projects_detailed" data-skelet-filter-container="tasks">
         <div class="skelet_projects_list_detailed_devider">
             <div class="skelet_projects_list_detailed_devider_icon">
                 <img src="{% static 'icons/expand_arrow.svg' %}" style="width: 1em; height: 1em">
             </div>
             <span class="skelet_projects_list_detailed_devider_label">All Tasks</span>
+            <div style="width: 100%; height: 100%; display: flex; align-items: center; gap: 0.25em" data-skelet-filter-bar></div>
         </div>
         {% for task in tasks %}
             <li class="skelet_project_detailed"
@@ -14,14 +15,16 @@
                 data-description="{{ task.description }}"
                 data-status="{{ task.status }}"
                 data-owner="{{ task.assignee }}"
-                data-team="{{ task.due_date }}">
+                data-team="{{ task.due_date }}"
+                data-skelet-filter-row
+            >
                 <div class="skelet_project_detailed_icon">
                     <div class="skelet_project_detailed_icon_square"></div>
                 </div>
                 <a href="" class="data-fields">
-                    <div class="data-field project-name"><span>{{ task.title }}</span></div>
-                    <div class="data-field task-description"><span>{{ task.description }}</span></div>
-                    <div class="data-field project-status"><span data-palet="tasks" data-palet-type="{{ task.status }}">{{ task.status }}</span></div>
+                    <div class="data-field project-name" data-skelet-filter-drag="name"><span>{{ task.title }}</span></div>
+                    <div class="data-field task-description" data-skelet-filter-drag="description"><span>{{ task.description }}</span></div>
+                    <div class="data-field project-status" data-skelet-filter-drag="status"><span data-palet="tasks" data-palet-type="{{ task.status }}">{{ task.status }}</span></div>
                     <div class="data-field project-updated_at"><span>{{ task.due_date }}</span></div>
                     <div class="data-field project-team"><span>
                          {% for member in task.assignee.all %}
